@@ -1,10 +1,9 @@
+![banner](fastapi+passwordless.png)
+
 Passwordless.ID - FastAPI Demo
 ==============================
 
 > This minimal example shows an integration between FastAPI and Passwordless.ID.
-
-Source code: ...
-
 
 Running it
 ----------
