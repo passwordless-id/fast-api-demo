@@ -3,7 +3,7 @@
 Passwordless.ID - FastAPI Demo
 ==============================
 
-> This minimal example shows an integration between FastAPI and Passwordless.ID.
+> This minimal example shows an integration between [FastAPI] and (Passwordless.ID)[https://passwordless.id].
 
 Running it
 ----------
