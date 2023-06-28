@@ -12,13 +12,14 @@ To run it: `uvicorn main:app`
 
 And open http://localhost:8000/docs 
 
-For authentication, you can choose either the implicit flow or the authorization code.
-For both, the `client_id` should be your domain ("http://localhost:8000") in our case.
+For authentication, you can pick the implicit flow or the authorization code flow (see section below).
+The `client_id` should be the domain, or more precisely the "origin" where the web app is running. 
+In our case `http://localhost:8000`.
 
 ![openapi-auth-screenshot](openapi-auth-screenshot.png)
 
-
-For the authorization code flow, ignore the `client_secret` and leave it empty. (That sounds fishy right? A section related to security concerns is at the end of this page)
+There is no need to register anything on the Passwordless.ID website, it's a free and public identity provider.
+Just provide the origin as `client_id` and it will take care of the rest.
 
 Once you are authenticated and authorized access, you can return the user information server side.
 
@@ -53,11 +54,15 @@ How exactly this is done is left to your own preference. Lastly, maintaining you
     
 
 
+Authorization code flow
+-----------------------
 
-Security apects
----------------
+If you are familiar with OAuth2, you should know that the authorization code is recommended over the implicit flow, which was even deprecated in OAuth 2.1 although it is still widely used in practice.
 
-Let's understand what is going on in this "authorization code" flow.
+Using the authorization code flow is possible too, and actually recommended. Simply ignore the `client_secret` and leave it empty.
+That sounds fishy right? Here comes an explanation why the authorization code without secret is still more secure than the implicit flow and why it may or may not be enough for your security concerns.
+
+First, let's understand what is going on in the "authorization code" flow.
 
 1. The OpenAPI docs page redirects to an URL like `https://api.passwordless.id/openid/authorize?...`
 2. Once the user authenticated and granted permission to see it's profile, it's redirected back to the OpenAPI docs with a `code`
